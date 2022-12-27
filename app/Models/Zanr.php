@@ -12,4 +12,8 @@ class Zanr extends Model
     protected $fillable = [
         'naziv',
     ];
+
+    public function film(){
+        return $this->hasMany(Film::class);
+    }
 }

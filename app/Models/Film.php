@@ -14,4 +14,17 @@ class Film extends Model
         'godina_izdanja',
         'opis',
     ];
+
+    public function reditelj(){
+        return $this->belongsTo(Reditelj::class);
+    }
+
+    public function zanr(){
+        return $this->belongsTo(Zanr::class);
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
 }

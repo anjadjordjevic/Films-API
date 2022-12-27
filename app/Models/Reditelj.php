@@ -15,4 +15,8 @@ class Reditelj extends Model
         'datum_rodjenja',
         'pol',
     ];
+
+    public function film(){
+        return $this->hasMany(Film::class);
+    }
 }

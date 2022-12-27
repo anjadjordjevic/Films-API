@@ -14,7 +14,10 @@ class RediteljFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'ime'=>$this->faker->firstName(),
+            'prezime'=>$this->faker->lastName(),
+            'datum_rodjenja'=>$this->faker->date(),
+            'pol'=>$this->faker->randomElement(['muski','zenski']),
         ];
     }
 }

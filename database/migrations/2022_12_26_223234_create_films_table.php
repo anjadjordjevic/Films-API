@@ -15,11 +15,11 @@ class CreateFilmsTable extends Migration
     {
         Schema::create('films',function (Blueprint $table){
             $table->id();
-            $table->string('naziv');
+            $table->string('naziv')->unique();
             $table->string('godina_izdanja');
-            $table->string('opis');
+            $table->text('opis')->unique();
             $table->foreignId('zanr_id'); 
-            $table->foreignId('reditelj_id'); 
+            $table->foreignId('reditelj_id');
             $table->timestamps();
         });
     }

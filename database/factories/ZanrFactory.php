@@ -14,7 +14,7 @@ class ZanrFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'naziv'=>$this->faker->unique()->word(),
         ];
     }
 }
