@@ -47,9 +47,14 @@ class RediteljController extends Controller
      * @param  \App\Models\Reditelj  $reditelj
      * @return \Illuminate\Http\Response
      */
-    public function show(Reditelj $reditelj)
+    public function show($id)
     {
-        return new RediteljResource($reditelj);
+        $red = Reditelj::find($id);
+        if (is_null($red)) {
+            return response()->json("Reditelj sa ovim id-em nije pronadjen", 404);
+        }
+
+        return response()->json(new RediteljResource($red));
     }
 
     /**

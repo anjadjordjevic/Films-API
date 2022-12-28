@@ -47,9 +47,14 @@ class ZanrController extends Controller
      * @param  \App\Models\Zanr  $zanr
      * @return \Illuminate\Http\Response
      */
-    public function show(Zanr $zanr)
+    public function show($id)
     {
-        return new ZanrResource($zanr);
+        $zanr = Zanr::find($id);
+        if (is_null($zanr)) {
+            return response()->json("Zanr sa ovim id-em nije pronadjen", 404);
+        }
+
+        return response()->json(new ZanrResource($zanr));
     }
 
     /**

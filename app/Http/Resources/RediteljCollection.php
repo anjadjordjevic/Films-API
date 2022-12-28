@@ -14,6 +14,7 @@ class RediteljCollection extends ResourceCollection
      */
 
     public static $wrap ='reditelji';
+    
     public function toArray($request)
     {
         return parent::toArray($request);

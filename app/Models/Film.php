@@ -9,11 +9,13 @@ class Film extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
+   protected $guarded=[];
+   
+   /* protected $fillable = [
         'naziv',
         'godina_izdanja',
         'opis',
-    ];
+    ];*/
 
     public function reditelj(){
         return $this->belongsTo(Reditelj::class);

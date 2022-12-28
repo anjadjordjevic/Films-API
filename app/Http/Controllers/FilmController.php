@@ -60,7 +60,7 @@ class FilmController extends Controller
             'opis'=>$request->opis,
             'godina_izdanja'=>$request->godina_izdanja,
             'zanr_id'=>$request->zanr_id,
-            'rediteljr_id'=>$request->reditelj_id,
+            'reditelj_id'=>$request->reditelj_id,
             'user_id'=>Auth::user()->id          
         ]);
 
@@ -73,11 +73,14 @@ class FilmController extends Controller
      * @param  \App\Models\Film  $film
      * @return \Illuminate\Http\Response
      */
-    public function show(Film $film)
+    public function show($id)
     {
+        $film = Film::find($id);
+        if (is_null($film)) {
+            return response()->json("Film sa ovim id-em nije pronadjen", 404);
+        }
 
-        return new FilmResource($film);
-
+        return response()->json(new FilmResource($film));
     }
 
     /**

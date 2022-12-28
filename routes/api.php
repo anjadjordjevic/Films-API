@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\FilmRediteljController;
 use App\Http\Controllers\FilmZanrController;
@@ -28,7 +29,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/users', [UserController::class,'index'])->name('users.show');
 Route::get('/users/{id}', [UserController::class,'show'])->name('users.index');
 
-Route::resource('films', FilmController::class)->only(['index','show','update','store','destroy']);
+Route::resource('films', FilmController::class)->only(['index','show']);
 Route::resource('users.films', UserFilmController::class);
 
 Route::resource('reditelj',RediteljController::class);
@@ -37,3 +38,14 @@ Route::resource('zanr',ZanrController::class);
 Route::get('/users/{id}/films',[UserFilmController::class, 'index'])->name('users.films.index');
 Route::resource('film.reditelj/{id}',FilmRediteljController::class);
 Route::resource('zanr.film',FilmZanrController::class);
+
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::group(['middleware'=>['auth:sanctum']], function(){
+    Route::get('/profile', function(Request $request){
+        return auth()->user();
+    });
+    Route::resource('films', FilmController::class)->only(['update','store','destroy']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+});
