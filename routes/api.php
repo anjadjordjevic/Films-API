@@ -3,7 +3,6 @@
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\FilmRediteljController;
-use App\Http\Controllers\FilmZanrController;
 use App\Http\Controllers\RediteljController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserFilmController;
@@ -26,8 +25,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/users', [UserController::class,'index'])->name('users.show');
-Route::get('/users/{id}', [UserController::class,'show'])->name('users.index');
+Route::get('/users', [UserController::class,'index']);
+Route::get('/users/{id}', [UserController::class,'show']);
 
 Route::resource('films', FilmController::class)->only(['index','show']);
 Route::resource('users.films', UserFilmController::class);
@@ -35,9 +34,8 @@ Route::resource('users.films', UserFilmController::class);
 Route::resource('reditelj',RediteljController::class);
 Route::resource('zanr',ZanrController::class);
 
-Route::get('/users/{id}/films',[UserFilmController::class, 'index'])->name('users.films.index');
-Route::resource('film.reditelj/{id}',FilmRediteljController::class);
-Route::resource('zanr.film',FilmZanrController::class);
+Route::get('/users/{id}/films',[UserFilmController::class, 'index']);
+Route::resource('reditelj/{id}/films',FilmRediteljController::class);
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);

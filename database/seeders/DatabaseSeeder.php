@@ -22,20 +22,9 @@ class DatabaseSeeder extends Seeder
         Zanr::truncate();
         \App\Models\User::truncate();
 
-        \App\Models\User::factory(5)->create();
+        //\App\Models\User::factory(5)->create();
 
-        Film::factory(3)->create();
-
-        /*$user1 = User::factory()->create();
-        $zanr1 = Zanr::factory()->create();
-        $zanr2 = Zanr::factory()->create();
-        $reditelj1 = Reditelj::factory()->create();
-
-        Film::factory(5)->create([
-            'user_id'=>$user1->id,
-            'zanr_id'=>$zanr1->id,
-            'reditelj_id'=>$reditelj1->id
-        ]);*/
+        Film::factory(5)->create();
 
 
         /*Film::create([

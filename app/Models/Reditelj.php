@@ -10,6 +10,7 @@ class Reditelj extends Model
     use HasFactory;
 
     protected $guarded=[];
+    
     /*protected $fillable = [
         'ime',
         'prezime',

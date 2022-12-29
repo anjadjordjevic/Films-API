@@ -10,7 +10,7 @@ class Film extends Model
     use HasFactory;
 
    protected $guarded=[];
-   
+
    /* protected $fillable = [
         'naziv',
         'godina_izdanja',
